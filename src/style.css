@@ -6,32 +6,27 @@
 }
 body {
   margin: 0px;
-  background: black;
+  background: rgba(0, 0, 0, 0.76);
   overflow: hidden;
-}
-
-h1 {
-    font-size: x-larger;
 }
 
 #content {
   height: 100%;
   width: 101%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 20px;
   opacity: 1;
-  justify-content: space-between;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   background-image: url("./background.jpeg");
   backdrop-filter: blur(12px);
   /*box-shadow:  inset 0 -50px 50px -30px #000000;*/
-  transform: translateZ(-2px) scale(3);
+  transform: translateZ(-1px) scale(2);
+  transition: opacity 200ms
 }
-
+html {
+    scroll-behavior: smooth;
+}
 #content.pressed {
     opacity: 0;
     backdrop-filter: blur(12px);    
@@ -40,17 +35,10 @@ h1 {
 #name {
     text-align: center;
 }
-#profile {
-    width: 40%;
-    border-radius: 5%;
 
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
-}
 #sq {
-  width: 60%;
-  height: 80%;
+  width: 40%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,6 +53,7 @@ h1 {
 #about {
   height: 100%;
   transform: translateZ(0);
+  transform-origin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,13 +64,6 @@ h1 {
 
   }
   
-#sq.pressed {
-  background: rgba(0, 0, 0, 0.1);;
-  width: 600px;
-  height: 600px;
-  transform: rotate(0deg);
-}
-
 button {
   background-color: rgba(0, 0, 0, 0.3);
   border: 1px solid rgb(0, 0, 0);
@@ -94,24 +76,17 @@ button {
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    transition: padding 0.s;
+    transition: padding-top 500ms;
 
-  }
-
-  .parallax__layer--base {
-    transform: translateZ(0);
-  }
-  .parallax__layer--back {
-    transform: translateZ(-1px);
   }
 
   #navbar {
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
     position:fixed;
     top: 0px;
     width: 100%;
     display: block;
-    transition: top 0.s;
+    transition: top 500ms;
   }
   
   #navbar a {
@@ -126,5 +101,5 @@ button {
   
   #navbar a:hover {
     background-color: #ddd;
-    color: black;
+    color: rgb(255, 0, 0);
   }

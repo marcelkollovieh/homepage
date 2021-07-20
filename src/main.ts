@@ -1,5 +1,5 @@
 import * as Tone from 'tone'
-
+import { throttle } from 'lodash'
 const button = () => {
     document.getElementById('hd12').textContent='Gedrueckt'
     const synth = new Tone.Synth().toDestination();
@@ -24,15 +24,15 @@ const drawSquare = () => {
 
     document.getElementById("about").scrollIntoView({behavior: "smooth"});
 }
-
-
-parallax.addEventListener('scroll', function() {
+const scrollCallback = () => {
     let relative = 1- 2* parallax.scrollTop/parallax.scrollHeight
-    console.log(relative)
     content.style.opacity=String(relative);
     document.getElementById("navbar").style.top = String(relative*50)+'px';
-        parallax.style.paddingTop = String((1-relative)*50)+'px'
+    parallax.style.paddingTop = String((1-relative)*50)+'px'
     
-  });
+  };
+parallax.addEventListener('scroll', throttle(scrollCallback, 100));
 //document.getElementById('b').addEventListener('click', button)
 document.getElementById('b').addEventListener('click', drawSquare);
+
+  
