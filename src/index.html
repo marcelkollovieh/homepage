@@ -1,43 +1,133 @@
 <html>
-    <head>
-        <title>My website</title> 
-    </head>
-    <div id="navbar">
-        <a href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-    </div>
-   
-    <body>
-        
-        
-        <div class="parallax">
-            
-            <div id="content">
-                
-                
-                <div id='sq'>
-                    <h1 id=name>MARCEL KOLLOVIEH</h1>
-                    <p id=desc>GRADUATE STUDENT @ TUM</p>
+  <head>
+    <title>My website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-                    <footer> 
-                        <ul class="icons">
-                            <li><a href="mailto:marcel.kollovieh(at)tum.de" class="fa-envelope">Email</a></li>
-                            <li><a href="https://www.linkedin.com/in/marcel-kollovieh-8a2ab21b7/" target="_blank" class="fa-linkedin">LinkedIn</a></li>
-                        </ul>
-                    </footer>
-                    <button id='b' type="button">
-                        More About me
-                    </button>
-                </div>
-            </div>
+  <div id="navbar">
+    <a href="#top" id="homebutton">Home</a>
+    <a href="#about" id="aboutbutton2">News</a>
+    <a href="mailto:marcel.kollovieh(at)tum.de" class="fa-envelope">Email</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <body>
+    <a id="top"></a>
+    <div class="parallax">
+      <div id="content">
+        <div id="sq">
 
-            
-            <div id='about'>
-                
-                <h1>About Me</h1>
-            </div>
+          <h2 id="heythere">Hey there</h2>
+          <h1 id="name">I'm Marcel Kollovieh. Graduate Student at TUM</h1>
+          <button id="aboutbutton" class="solidbutton" type="button">
+            More about me
+          </button>
+          <div></div>
         </div>
-    </body>
+      </div>
 
+      <div id="about">
+        <div class="brightbox">
+          <h1>About Me</h1>
+          <div id=aboutme>
+            <img src="profile.jpg" id="profilepic" />
+            <div id=aboutdesc>
+                <h2>
+                    I'm a graduate student at the TUM focusing on machine learning and
+                    data analysis.
+                </h2>
+            </div>
+          </div>
+          <div id=buttoncontainer>
+            <button id="cvbutton" class="solidbutton" type="button">CV</button>
+            <button id="contactbutton" class="solidbutton" type="button">
+            Contact
+            </button>
+        </div>
+        </div>
+        <div id="resume" class="darkbox">
+          <h1>Résumé</h1>
+          <div id="resumerow">
+            <div id="column1">
+              <h2>Education</h2>
+              <div class="cvsquare">
+                <img src="tum.png" class="icon" />
+
+                <div class="description">
+                  <h3>Master Computer Science</h3>
+                  <p>Technical University of Munich, since 10/2019</p>
+                </div>
+              </div>
+              <div class="cvsquare">
+                <img src="tum.png" class="icon" />
+                <div class="description">
+                  <h3>Bachelor Computer Science</h3>
+                  <p>Technical University of Munich, 10/2016 - 09/2019</p>
+                </div>
+              </div>
+              <div class="cvsquare">
+                <img src="nus.png" class="icon" />
+                <div class="description">
+                  <h3>Exchange Semester Computer Science</h3>
+                  <p>National University of Singapore, 08/2018-12/2018</p>
+                </div>
+              </div>
+            </div>
+            <div id="column2">
+              <h2>Work Experience</h2>
+              <div class="cvsquare">
+                <img src="hhz.jpeg" class="icon" />
+                <div class="description">
+                  <h3>Student Research Assistant</h3>
+                  <p>Helmholtz Zentrum München, since 09/2020</p>
+                </div>
+              </div>
+              <div class="cvsquare">
+                <img src="tum.png" class="icon" />
+                <div class="description">
+                  <h3>
+                    Student Teaching Assistant: Discrete Probability Theory
+                  </h3>
+                  <p>Technical University of Munich, 04/2020-10/2020</p>
+                </div>
+              </div>
+              <div class="cvsquare">
+                <img src="bsi.jpeg" class="icon" />
+                <div class="description">
+                  <h3>Working Student</h3>
+                  <p>
+                    BSI Business Systems Integration Deutschland GmbH,
+                    03/2019-02/2020
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="brightbox">
+          <h1>Latest Work</h1>
+          <div class="projects">
+            <a href="https://lofi.jacobzhang.de" class="project">
+              <img src="https://lofi.jacobzhang.de/cover.jpg" class="icon2" />
+              <div class="overlay">
+                <div class="projectdescription">Lofi Generator</div>
+              </div>
+            </a>
+            <a href="https://arxiv.org/abs/2009.04240" class="project">
+              <img src="nas.png" class="icon2" />
+              <div class="overlay">
+                <div class="projectdescription">Geometry-aware neural solver for fast Bayesian calibration of brain tumor models</div>
+              </div>
+            </a>
+            <div class="box1"><img class="icon2" /></div>
+            <div class="box1"><img class="icon2" /></div>
+
+            <div class="box1"><img class="icon2" /></div>
+            <div class="box1"><img class="icon2" /></div>
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
