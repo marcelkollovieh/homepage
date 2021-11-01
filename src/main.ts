@@ -2,8 +2,7 @@ import Hammer from "hammerjs";
 
 const sectionsContainer = document.getElementById("container");
 const sections = document.getElementById("sections");
-const intro = document.getElementById("intro");
-
+const sectionNames = ['Home', 'Education', 'Work Experience', 'Recent Work', 'Contact']
 const numPages = sections.childElementCount;
 let currentPage = 0;
 
@@ -43,6 +42,9 @@ sectionsContainer.onscroll = sectionsContainer.onwheel = () => {
 
     pageDots.forEach((pageDot, i) => {
       pageDot.classList.toggle("active", i === currentPage);
+    });
+    navbarHrefs.forEach((navbarHref, i) => {
+      navbarHref.classList.toggle("active", i === currentPage);
     });
   }
 };
@@ -116,11 +118,11 @@ hammer.on("panend pan swipe", (ev) => {
 // add page dots
 const pageDotsElement = document.getElementById("page-dots");
 const pageDots: HTMLElement[] = [];
-console.log(pageDotsElement)
 if (pageDotsElement) {
   for (let i = 0; i < numPages; i += 1) {
     const pageDot = document.createElement("div");
     pageDot.classList.add("page-dot");
+    
     if (i === 0) {
       pageDot.classList.add("active");
     }
@@ -132,6 +134,31 @@ if (pageDotsElement) {
     pageDots.push(pageDot);
   }
 }
+
+//navbar entries
+const navbarElement = document.getElementById("navbar");
+const navbarHrefs: HTMLElement[] = [];
+console.log(navbarElement)
+if (navbarElement) {
+  for (let i = 0; i < numPages; i += 1) {
+    const navbarHref = document.createElement("div");
+    navbarHref.textContent = sectionNames[i];
+    navbarHref.classList.add("navbar-button");
+    if (i === 0) {
+      navbarHref.classList.add("active");
+    }
+    console.log(i);
+
+    navbarElement.appendChild(navbarHref);
+    navbarHref.onclick = () => {
+      console.log(i);
+      snapToPage(i);
+    };
+    navbarHrefs.push(navbarHref);
+  }
+}
+console.log(navbarHrefs)
+
 
 let lastWheelTime = new Date(0);
 window.onwheel = (e: WheelEvent) => {
