@@ -43,11 +43,40 @@ html {
   color: rgb(0, 0, 0);
 }
 
-/* Change background on mouse-over */
 .navbar-button.active {
   color: rgb(0, 0, 0);
-  /*border-bottom: 2px solid rgb(129, 0, 0);*/
 }
+
+#scrolldown {
+  left: 50%;
+  display: block;
+  position: sticky;
+  z-index: 15;
+  bottom: 0px;
+  padding: 40px;
+  overflow: visible; 
+  animation:fadeMoveDown 3s ease-out forwards infinite ;
+  -webkit-animation:fadeMoveDown 3s infinite;
+}
+#arrow {
+  border: solid rgb(255, 255, 255);
+  border-width: 0 3px 3px 0;
+  padding: 20px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+@keyframes fadeMoveDown
+{ from {bottom:40px; opacity: 0;}
+to {bottom:0px; opacity: 1}
+}
+
+@-webkit-keyframes fadeMoveDown /* Safari and Chrome */
+{
+from {bottom:40px; opacity: 0;}
+to {bottom:0px; opacity: 1;}
+}
+
 
 #container {
   height: 100vh;

@@ -179,10 +179,4 @@ window.onwheel = (e: WheelEvent) => {
 };
 
 document.getElementById('aboutbutton').addEventListener('click', () => snapToPage(1));
-
-/* document.getElementById('homebutton').addEventListener("click", scrollToContent)
-document.getElementById('aboutbutton').addEventListener('click', scrollToAbout);
-document.getElementById('aboutbutton2').addEventListener("click", scrollToAbout);
-document.getElementById('contactbutton').addEventListener('click', scrollToContacts); */
-//parallax.addEventListener('scroll', throttle(scrollCallback, 200));
-//parallax.addEventListener('scroll', debounce(scrollCallback, 500));
+document.getElementById('scrolldown').addEventListener('click', () => snapToPage(1));
