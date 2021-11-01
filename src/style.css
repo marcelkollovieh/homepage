@@ -92,6 +92,9 @@ html {
   backdrop-filter: blur(12px);
 }
 
+#inner-recent-work{
+}
+
 #intro {
   background-repeat: no-repeat;
   background-position: center center;
@@ -125,17 +128,39 @@ html {
   color: rgb(129, 0, 0);
   font-family: Montserrat;
   font-weight: 700;
+  animation: slideIn 1s;
 }
-
+@-webkit-keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-moz-keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform: translateX(-900px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 .cvsquare {
   display: flex;
   flex-direction: row;
   align-items: center;
-  transition: transform 400ms;
+  margin: 8px;
 }
-.cvsquare:hover {
-  transform: scale(1.1);
-}
+
 
 .headline {
   text-align: center;
@@ -157,6 +182,13 @@ html {
   justify-content: center;
 }
 
+#recent-work {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 #contact {
   display: flex;
   flex-direction: column;
@@ -166,14 +198,22 @@ html {
 
 .icon {
   background: rgb(255, 255, 255);
+  object-fit: contain;
   width: 96px;
   height: 96px;
   padding: 0px;
   border-style: solid;
   border-width: 1px;
+  border-color: rgb(103, 103, 103);
   border-radius: 50%;
-  box-shadow: rgb(90, 80, 80);
+  box-shadow: rgb(0, 0, 0);
+  transition: transform 400ms;
 }
+
+.icon:hover {
+  transform: scale(1.2);
+}
+
 .description {
   margin: 12px;
   padding: 0px;
@@ -195,6 +235,56 @@ html {
   background: white;
   color: rgba(0, 0, 0, 0.8);
   transform: scale(1.1)
+}
+
+.project {
+  position: relative;
+  transition: transform 400ms;
+
+}
+.icon2 {
+  height: 300px;
+  width: 400px;
+  object-fit: scale-down;
+
+  padding: 48px;
+  background: linear-gradient(to right, #a43931, #1d4350);
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 0px;
+  border-width: 24px;
+  border-color: black;
+}
+.project:hover {
+  transform: scale(1.2);
+  z-index: 2;
+}
+.projectdescription {
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.project:hover .overlay {
+  opacity: 1;
 }
 /* #content.pressed {
   opacity: 0;
