@@ -2,8 +2,7 @@ import Hammer from "hammerjs";
 
 const sectionsContainer = document.getElementById("container");
 const sections = document.getElementById("sections");
-const intro = document.getElementById("intro");
-
+const sectionNames = ['Home', 'Education', 'Work Experience', 'Recent Work', 'Contact']
 const numPages = sections.childElementCount;
 let currentPage = 0;
 
@@ -41,8 +40,11 @@ sectionsContainer.onscroll = sectionsContainer.onwheel = () => {
   if (currentPage !== newCurrentPage) {
     currentPage = newCurrentPage;
 
-    pageDots.forEach((pageDot, i) => {
-      pageDot.classList.toggle("active", i === currentPage);
+    pageDots.forEach((pageDotParent, i) => {
+      pageDotParent.children[1].classList.toggle("active", i===currentPage)
+    });
+    navbarHrefs.forEach((navbarHref, i) => {
+      navbarHref.classList.toggle("active", i === currentPage);
     });
   }
 };
@@ -116,22 +118,59 @@ hammer.on("panend pan swipe", (ev) => {
 // add page dots
 const pageDotsElement = document.getElementById("page-dots");
 const pageDots: HTMLElement[] = [];
-console.log(pageDotsElement)
 if (pageDotsElement) {
   for (let i = 0; i < numPages; i += 1) {
+    const pageDotParent = document.createElement("div");
     const pageDot = document.createElement("div");
+    const label = document.createElement("div");
+    label.textContent = sectionNames[i];
+    pageDotParent.appendChild(label)
+    pageDotParent.appendChild(pageDot)
+    pageDotParent.classList.add("page-dot-parent");
     pageDot.classList.add("page-dot");
+    pageDot.addEventListener("mouseover", () => {
+      label.classList.toggle("active")
+    })
+    pageDot.addEventListener("mouseout", () => {
+      label.classList.toggle("active")
+    })
+    label.classList.add("page-dot-label")
     if (i === 0) {
       pageDot.classList.add("active");
     }
 
-    pageDotsElement.appendChild(pageDot);
-    pageDot.onclick = () => {
+    pageDotsElement.appendChild(pageDotParent);
+    pageDotParent.onclick = () => {
       snapToPage(i);
     };
-    pageDots.push(pageDot);
+    pageDots.push(pageDotParent);
   }
 }
+
+//navbar entries
+const navbarElement = document.getElementById("navbar");
+const navbarHrefs: HTMLElement[] = [];
+console.log(navbarElement)
+if (navbarElement) {
+  for (let i = 0; i < numPages; i += 1) {
+    const navbarHref = document.createElement("div");
+    navbarHref.textContent = sectionNames[i];
+    navbarHref.classList.add("navbar-button");
+    if (i === 0) {
+      navbarHref.classList.add("active");
+    }
+    console.log(i);
+
+    navbarElement.appendChild(navbarHref);
+    navbarHref.onclick = () => {
+      console.log(i);
+      snapToPage(i);
+    };
+    navbarHrefs.push(navbarHref);
+  }
+}
+console.log(navbarHrefs)
+
 
 let lastWheelTime = new Date(0);
 window.onwheel = (e: WheelEvent) => {
