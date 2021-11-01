@@ -1,41 +1,161 @@
-import { throttle } from 'lodash'
+import Hammer from "hammerjs";
 
-const content = document.getElementById('content'); 
-const navbar = document.getElementById('navbar'); 
-let parallax = document.querySelector('.parallax') as HTMLElement
+const sectionsContainer = document.getElementById("container");
+const sections = document.getElementById("sections");
+const intro = document.getElementById("intro");
 
-const scrollToAbout = () => {
-    document.getElementById("about").scrollIntoView({behavior: "smooth"});
-}
-const scrollToContacts = () => {
-    document.getElementById("contacts").scrollIntoView({behavior: "smooth"});
-}
-const scrollToContent = () => {
-    parallax.scrollTo({top: 0,
-        left: 0,
-        behavior: 'smooth'})
-}
-const scrollCallback = () => {
-    let relative = 1- 2* parallax.scrollTop/parallax.scrollHeight
-    content.style.opacity=String(relative*0.6+0.4);
-    //document.getElementById("navbar").style.top = String(-relative*60)+'px';
-    //parallax.style.paddingTop = String((1-relative)*60)+'px'
-    
-  }; 
+const numPages = sections.childElementCount;
+let currentPage = 0;
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+// override default listeers
+sectionsContainer.ondragstart = (e: Event) => {
+  e.preventDefault();
+};
+sectionsContainer.onclick = (e: Event) => {
+  if (!(e.target instanceof HTMLAnchorElement)) {
+    e.preventDefault();
+  }
+  e.stopPropagation();
+};
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+let panning = false;
+let lastDeltaY = 0;
+let pageAtPanStart = -1;
+let swiped = false;
+
+// set up swipe and drag
+//let pageHeight = sectionsContainer.getBoundingClientRect().height;
+let pageHeight = window.innerHeight;
+
+
+const scrollToPosition = (scrollPosition: number, animate = false) => {
+  if (animate) {
+    sectionsContainer.scrollTo({ top: scrollPosition, behavior: "smooth" });
+  } else {
+    sectionsContainer.scrollTop = scrollPosition;
+  }
+};
+
+sectionsContainer.onscroll = sectionsContainer.onwheel = () => {
+  const newCurrentPage = Math.round(sectionsContainer.scrollTop / pageHeight);
+  if (currentPage !== newCurrentPage) {
+    currentPage = newCurrentPage;
+
+    pageDots.forEach((pageDot, i) => {
+      pageDot.classList.toggle("active", i === currentPage);
     });
+  }
+};
+
+const snapToPage = (pageNumber: number) => {
+  if (pageNumber >= numPages) {
+    pageNumber = numPages - 1;
+  }
+  scrollToPosition(pageNumber * pageHeight, true);
+};
+snapToPage(0);
+
+// set up Hammer.js
+const hammer = new Hammer(sectionsContainer);
+hammer.on("panend pan swipe", (ev) => {
+  ev.preventDefault();
+  ev.srcEvent.preventDefault();
+  let bottom = ev.deltaY < 0;
+
+  // weird Hammer.js behavior sometimes when scrolling vertically
+  if (ev.type === "pan" && ev.isFinal) {
+    return;
+  }
+
+  switch (ev.type) {
+    case "pan":
+      if (!swiped) {
+        const deltaY = ev.deltaY - lastDeltaY;
+        panning = true;
+        if (pageAtPanStart < 0) {
+          pageAtPanStart = currentPage;
+        }
+        sectionsContainer.classList.add("panning");
+        scrollToPosition(sectionsContainer.scrollTop - deltaY);
+        lastDeltaY = ev.deltaY;
+      }
+      break;
+
+    case "swipe":
+      swiped = true;
+      lastDeltaY = 0;
+      // eslint-disable-next-line no-bitwise
+      bottom = (ev.direction & Hammer.DIRECTION_DOWN) === 0;
+      snapToPage(pageAtPanStart + (bottom ? 1 : -1));
+      setTimeout(() => {
+        panning = false;
+        pageAtPanStart = -1;
+        sectionsContainer.classList.remove("panning");
+      }, 0);
+      ev.srcEvent.stopPropagation();
+      break;
+
+    case "panend":
+      if (!swiped) {
+        lastDeltaY = 0;
+        snapToPage(currentPage);
+        setTimeout(() => {
+          panning = false;
+          pageAtPanStart = -1;
+          sectionsContainer.classList.remove("panning");
+        }, 0);
+      }
+      swiped = false;
+      break;
+
+    default:
+      break;
+  }
 });
 
+// add page dots
+const pageDotsElement = document.getElementById("page-dots");
+const pageDots: HTMLElement[] = [];
+console.log(pageDotsElement)
+if (pageDotsElement) {
+  for (let i = 0; i < numPages; i += 1) {
+    const pageDot = document.createElement("div");
+    pageDot.classList.add("page-dot");
+    if (i === 0) {
+      pageDot.classList.add("active");
+    }
 
-document.getElementById('homebutton').addEventListener("click", scrollToContent)
+    pageDotsElement.appendChild(pageDot);
+    pageDot.onclick = () => {
+      snapToPage(i);
+    };
+    pageDots.push(pageDot);
+  }
+}
+
+let lastWheelTime = new Date(0);
+window.onwheel = (e: WheelEvent) => {
+  if (new Date().getTime() - lastWheelTime.getTime() < 500) return;
+  lastWheelTime = new Date();
+
+  if (e.deltaY > 0) {
+    // down
+    if (currentPage >= numPages - 1) return;
+    currentPage += 1;
+    snapToPage(currentPage);
+  } else {
+    // up
+    if (currentPage <= 0) return;
+    currentPage -= 1;
+    snapToPage(currentPage);
+  }
+};
+
+document.getElementById('aboutbutton').addEventListener('click', () => snapToPage(1));
+
+/* document.getElementById('homebutton').addEventListener("click", scrollToContent)
 document.getElementById('aboutbutton').addEventListener('click', scrollToAbout);
 document.getElementById('aboutbutton2').addEventListener("click", scrollToAbout);
-document.getElementById('contactbutton').addEventListener('click', scrollToContacts);
-parallax.addEventListener('scroll', throttle(scrollCallback, 50));
+document.getElementById('contactbutton').addEventListener('click', scrollToContacts); */
+//parallax.addEventListener('scroll', throttle(scrollCallback, 200));
+//parallax.addEventListener('scroll', debounce(scrollCallback, 500));
