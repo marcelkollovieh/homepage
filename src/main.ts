@@ -26,6 +26,9 @@ let swiped = false;
 //let pageHeight = sectionsContainer.getBoundingClientRect().height;
 let pageHeight = window.innerHeight;
 
+window.onresize = () => {
+  pageHeight = window.innerHeight;
+}
 
 const scrollToPosition = (scrollPosition: number, animate = false) => {
   if (animate) {
@@ -138,7 +141,6 @@ if (pageDotsElement) {
 //navbar entries
 const navbarElement = document.getElementById("navbar");
 const navbarHrefs: HTMLElement[] = [];
-console.log(navbarElement)
 if (navbarElement) {
   for (let i = 0; i < numPages; i += 1) {
     const navbarHref = document.createElement("div");
@@ -147,17 +149,14 @@ if (navbarElement) {
     if (i === 0) {
       navbarHref.classList.add("active");
     }
-    console.log(i);
 
     navbarElement.appendChild(navbarHref);
     navbarHref.onclick = () => {
-      console.log(i);
       snapToPage(i);
     };
     navbarHrefs.push(navbarHref);
   }
 }
-console.log(navbarHrefs)
 
 
 let lastWheelTime = new Date(0);
