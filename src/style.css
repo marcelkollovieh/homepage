@@ -145,20 +145,22 @@ to {bottom:0px; opacity: 1;}
   width: 40%;
 }
 #inner-education{
-  padding: 72px;
+  padding: 24px;
   background: rgba(23, 23, 23, 0.154);
   border-radius: 20px;
   backdrop-filter: blur(12px);
 }
 
 #inner-work{
-  padding: 72px;
+  padding: 24px;
   background: rgba(23, 23, 23, 0.154);
   border-radius: 20px;
   backdrop-filter: blur(12px);
 }
 
 #inner-recent-work{
+  display: flex;
+  flex-direction: row;
 }
 
 #intro {
@@ -226,7 +228,6 @@ to {bottom:0px; opacity: 1;}
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 8px;
 }
 
 
@@ -255,6 +256,8 @@ to {bottom:0px; opacity: 1;}
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: visible;
+
 }
 
 #contact {
@@ -267,15 +270,17 @@ to {bottom:0px; opacity: 1;}
 .icon {
   background: rgb(255, 255, 255);
   object-fit: contain;
-  width: 96px;
-  height: 96px;
-  padding: 0px;
+  width: 72px;
+  height: 72px;
+  padding: 4px;
+  margin: 4px;
   border-style: solid;
-  border-width: 1px;
-  border-color: rgb(103, 103, 103);
-  border-radius: 50%;
-  box-shadow: rgb(0, 0, 0);
+  border-width: 0px;
+  border-color: rgb(0, 0, 0);
+  border-radius: 15%;
   transition: transform 400ms;
+  box-shadow: 0px 0px 5px black;;
+
 }
 
 .icon:hover {
@@ -283,7 +288,7 @@ to {bottom:0px; opacity: 1;}
 }
 
 .description {
-  margin: 12px;
+  margin: 8px;
   padding: 0px;
 }
 .contacticon{
@@ -306,25 +311,34 @@ to {bottom:0px; opacity: 1;}
 }
 
 .project {
+  width: 300px;
   position: relative;
-  transition: transform 400ms;
+  transition: transform 400ms, box-shadow 400ms;
+  margin: 24px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 16px;
+  background: linear-gradient(to right bottom, #3b8d99, #6b6b83,#aa4b6b );
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px black;;
 
 }
 .icon2 {
-  height: 300px;
-  width: 400px;
+  left: 50%;
+  height: 250px;
   object-fit: scale-down;
-
-  padding: 48px;
-  background: linear-gradient(to right, #a43931, #1d4350);
-  background-repeat: no-repeat;
-  background-position: center center;
-  margin: 0px;
+  margin: 16px;
   border-width: 24px;
   border-color: black;
+  box-shadow: 0px 0px 10px black;;
 }
 .project:hover {
   transform: scale(1.2);
+  box-shadow: 0px 0px 10px black;;
   z-index: 2;
 }
 .projectdescription {
@@ -348,7 +362,7 @@ to {bottom:0px; opacity: 1;}
   width: 100%;
   opacity: 0;
   transition: 0.5s ease;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .project:hover .overlay {
