@@ -28,6 +28,7 @@ let pageHeight = window.innerHeight;
 
 window.onresize = () => {
   pageHeight = window.innerHeight;
+  snapToPage(currentPage);
 }
 
 const scrollToPosition = (scrollPosition: number, animate = false) => {
@@ -68,10 +69,11 @@ hammer.on("panend pan swipe", (ev) => {
   let bottom = ev.deltaY < 0;
 
   // weird Hammer.js behavior sometimes when scrolling vertically
-  if (ev.type === "pan" && ev.isFinal) {
-    return;
-  }
+  // if (ev.type === "pan" && ev.isFinal) {
+  //   return;
+  // }
 
+  console.log(ev)
   switch (ev.type) {
     case "pan":
       if (!swiped) {
@@ -177,5 +179,5 @@ window.onwheel = (e: WheelEvent) => {
   }
 };
 
-document.getElementById('aboutbutton').addEventListener('click', () => snapToPage(1));
-document.getElementById('scrolldown').addEventListener('click', () => snapToPage(1));
+document.getElementById('aboutbutton').onclick = () => snapToPage(1);
+document.getElementById('scrolldown').onclick = () => snapToPage(1);

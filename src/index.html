@@ -11,102 +11,117 @@
   <div id="container">
     <div id="sections">
       <div class="section" id="intro">
-        <div id="inner-intro">
-          <h2 id="heythere">Hey there</h2>
-          <h1 id="name">I'm Marcel Kollovieh. A graduate student at the TUM focusing on machine learning and
-            data analysis</h1>
-          <button id="aboutbutton" class="solidbutton" type="button">More about me</button>
-          <button id="cvbutton" class="solidbutton" type="button" onclick="window.open('CV.pdf','_blank')" target="_blank">CV</button>
+        <div class="inner" id="inner-intro">
+          <div class="h2"  id="heythere">Hey there</div>
+          <div class="h1" id="name">I'm Marcel Kollovieh. A graduate student at TUM focusing on machine learning and
+            data analysis</div>
+          <div>
+            <button id="aboutbutton" class="solidbutton" type="button">More about me</button>
+            <button id="cvbutton" class="solidbutton" type="button" onclick="window.open('CV.pdf','_blank')" target="_blank">CV</button>
+          </div>
         </div>
         <div id=scrolldown>
           <div id="arrow" ></div>
         </div>
       </div>
       <div class='section' id="education">
-        <h1 class="headline">Education</h1>
+        <div class="section-header" class="headline">Education</div>
 
-        <div id="inner-education">
+        <div class="inner" id="inner-education">
           <div class="cvsquare">
             <img src="tum.png" class="icon" />
     
             <div class="description">
-              <h3>Master of Science</h3>
-              <p>Major: Computer Science<br>Technical University of Munich, since 10/2019</p>
+              <div class="h3">Master of Science</div>
+              <div class="subtitle">
+                <div>
+                  <span class="w500">Technical University of Munich, </span><span class="w300">since 10/2019</span>
+                </div>
+                <div>Major: Informatics</div>
+              </div>
             </div>
           </div>
           <div class="cvsquare">
             <img src="tum.png" class="icon" />
             <div class="description">
-              <h3>Bachelor of Science</h3>
-              <p>Major: Computer Science
-                <br>Minor: Mathematics
-                <br>Technical University of Munich, 10/2016 - 09/2019
-              </p>
+              <div class="h3">Bachelor of Science</div>
+              <div class="subtitle">
+                <div>
+                  <span class="w500">Technical University of Munich, </span><span class="w300">10/2016 – 09/2019</span>
+                </div>
+                <div>Major: Informatics</div>
+                <div>Minor: Mathematics</div>
+              </div>
             </div>
           </div>
           <div class="cvsquare">
             <img src="nus.png" class="icon" />
             <div class="description">
-              <h3>Exchange Semester</h3>
-              <p>Major: Computer Science<br>National University of Singapore, 08/2018-12/2018</p>
+              <div class="h3">Exchange Semester</div>
+              <div class="subtitle">
+                <div>
+                  <span class="w500">National University of Singapore, </span><span class="w300">08/2018 – 12/2018</span>
+                </div>
+                <div>Major: Computer Science</div>
+              </div>
             </div>
           </div>
         </div>
 
       </div>
       <div class='section' id="work">
-          <h1 class="headline">Work Experience</h1>
-          <div id="inner-work">
+          <div class="section-header" class="headline">Work Experience</div>
+          <div class="inner" id="inner-work">
             <div class="cvsquare">
               <img src="tum.png" class="icon" />
               <div class="description">
-                <h3>
+                <div class="h3">
                   Student Teaching Assistant: Preliminary Courses
-                </h3>
-                <p>Technical University of Munich, 10/2021-11/2021</p>
+                </div>
+                <div>Technical University of Munich, 10/2021-11/2021</div>
               </div>
             </div>
             <div class="cvsquare">
               <img src="hhz.jpeg" class="icon" />
               <div class="description">
-                <h3>Student Research Assistant</h3>
-                <p>Helmholtz Zentrum München, 09/2020-08/2021</p>
+                <div class="h3">Student Research Assistant</div>
+                <div>Helmholtz Zentrum München, 09/2020-08/2021</div>
               </div>
             </div>
             <div class="cvsquare">
               <img src="tum.png" class="icon" />
               <div class="description">
-                <h3>
+                <div class="h3">
                   Student Teaching Assistant: Discrete Probability Theory
-                </h3>
-                <p>Technical University of Munich, 04/2020-10/2020</p>
+                </div>
+                <div>Technical University of Munich, 04/2020-10/2020</div>
               </div>
             </div>
             <div class="cvsquare">
               <img src="bsi.jpeg" class="icon" />
               <div class="description">
-                <h3>Working Student Software Engineering</h3>
-                <p>
+                <div class="h3">Working Student Software Engineering</div>
+                <div>
                   BSI Business Systems Integration Deutschland GmbH,
                   03/2019-02/2020
-                </p>
+                </div>
               </div>
             </div>
             <div class="cvsquare">
               <img src="allweier.jpeg" class="icon" />
               <div class="description">
-                <h3>Temporary Employee</h3>
-                <p>
+                <div class="h3">Temporary Employee</div>
+                <div>
                   Allweier Präzisionsteile GmbH,
                   09/2015-12/2015
-                </p>
+                </div>
               </div>
             </div>
           </div>
       </div>
       <div class="section" id="recent-work">
-        <h1 class="headline">Recent Work</h1>
-        <div id="inner-recent-work">
+        <div class="section-header" class="headline">Recent Work</div>
+        <div class="inner" id="inner-recent-work">
           <div onclick="window.open('https://arxiv.org/abs/2009.04240','_blank')" class="project">
             <img src="nas.png" class="icon2" />
             <div class="overlay">
@@ -137,8 +152,8 @@
         </div>
       </div>
       <div class='section' id='contact'>
-        <h1 class="headline">Contact</h1>
-        <h2>Feel free to contact me on any of these</h2>
+        <div class="section-header" class="headline">Contact</div>
+        <div class="h2" >Feel free to contact me on any of these</div>
   
         <div id="contacts">
             <svg id="contactemail" class="contacticon" viewBox="0 0 20 20" onclick="location.href='mailto:marcel.kollovieh(at)tum.de'">
