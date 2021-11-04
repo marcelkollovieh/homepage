@@ -38,6 +38,14 @@ html {
 .navbar-button:hover, .navbar-button.active {
   font-weight: 700;
 }
+.navbar-button::before {
+  display: block;
+  content: attr(title);
+  font-weight: 700;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
 
 #scrolldown {
   margin-left: auto;
@@ -180,7 +188,6 @@ html {
   padding: 24px;
   background: rgba(23, 23, 23, 0.154);
   border-radius: 20px;
-  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -190,7 +197,9 @@ html {
   padding: 24px;
   background: rgba(23, 23, 23, 0.154);
   border-radius: 20px;
-  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 #inner-recent-work {
@@ -199,6 +208,7 @@ html {
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
+  max-width: 1000px;
 }
 
 #intro {
@@ -363,55 +373,66 @@ html {
 
 .project {
   width: 300px;
+  height: 300px;
   position: relative;
-  transition: transform 400ms, box-shadow 400ms;
+  transition: transform 400ms, box-shadow 400ms, padding 400ms;
   border-style: solid;
   border-width: 2px;
   border-color: black;
   background: linear-gradient(to right bottom, #3b8d99, #6b6b83, #aa4b6b);
   display: flex;
-  flex-direction: row;
   justify-content: center;
   overflow: hidden;
+  box-sizing: border-box;
+  padding:32px
 }
+
 .icon2 {
   left: 50%;
-  height: 250px;
+  max-height: 100%;
+  max-width: 100%;
   object-fit: scale-down;
-  margin: 16px;
   border-width: 24px;
   border-color: black;
   box-shadow: 0px 0px 10px black;
 }
+.sqicon{
+  margin: auto;
+}
 .project:hover {
-  transform: scale(1.2);
+  /*transform: scale(1.2);*/
   box-shadow: 0px 0px 10px black;
   z-index: 2;
+  padding:16px;
 }
 .projectdescription {
   color: white;
   font-size: 16px;
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
+  width: 90%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  flex-direction: column;
+  justify-content: end;
   text-align: center;
 }
 .overlay {
   position: absolute;
-  top: 0;
   bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   height: 100%;
   width: 100%;
-  opacity: 0;
+  opacity: 1;
   transition: 0.5s ease;
-  background-color: rgba(0, 0, 0, 0.75);
+  
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3),rgba(0, 0, 0, 0.6));
 }
 
 .project:hover .overlay {
-  opacity: 1;
+  opacity: 0;
 }

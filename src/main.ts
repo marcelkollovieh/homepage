@@ -147,6 +147,7 @@ if (navbarElement) {
   for (let i = 0; i < numPages; i += 1) {
     const navbarHref = document.createElement("div");
     navbarHref.textContent = sectionNames[i];
+    navbarHref.title = sectionNames[i];
     navbarHref.classList.add("navbar-button");
     if (i === 0) {
       navbarHref.classList.add("active");
