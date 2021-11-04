@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-
 * {
   font-family: "Quicksand", "sans-serif";
   font-weight: 400;
+  touch-action: none !important;
 }
 body {
   margin: 0px;
@@ -58,6 +58,7 @@ html {
   overflow: visible;
   animation: fadeMoveDown 3s ease-out forwards infinite;
   -webkit-animation: fadeMoveDown 3s infinite;
+  cursor: pointer;
 }
 #arrow {
   border: solid rgb(255, 255, 255);
@@ -235,6 +236,7 @@ html {
   font-size: 24;
   transition: background-color 200ms, color 200ms;
   margin: 0px;
+  cursor: pointer;
 }
 .solidbutton:hover {
   background-color: rgb(255, 255, 255);
@@ -362,13 +364,15 @@ html {
   border-radius: 20%;
   margin: 16px;
   color: white;
-  transition: background 200ms, color 200ms, transform 200ms;
+  transition: background 200ms, color 200ms, border-color 200ms, transform 200ms;
+  cursor: pointer;
 }
 .contacticon:hover {
-  background: white;
-  color: rgba(0, 0, 0, 0.8);
-  border-color: white;
-  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0);
+  color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.5);
+  
+  transform: scale(1.0);
 }
 
 .project {
@@ -384,7 +388,8 @@ html {
   justify-content: center;
   overflow: hidden;
   box-sizing: border-box;
-  padding:32px
+  padding:32px;
+  cursor: pointer;
 }
 
 .icon2 {
